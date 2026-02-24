@@ -11,14 +11,14 @@ public class PalindromeCheckerApp
         Scanner input = new Scanner(System.in); 
         System.out.print("Enter text : "); 
         String text= input.next();
-        Deque<Character> deque = new ArrayDeque<>();
+       LinkedList<Character> list = new LinkedList<>();
         for (char c : text.toCharArray()) 
-            deque.addLast(c);
+            list.add(c);
     
         boolean isPalindrome = true; 
-        while (deque.size() > 1) {
-
-            if (deque.removeFirst() != deque.removeLast()) {
+        while (list.size() > 1) {
+    
+            if (list.removeFirst() != list.removeLast()) {
                 isPalindrome = false;
                 break;
             }

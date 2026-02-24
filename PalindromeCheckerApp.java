@@ -3,21 +3,16 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) { 
         Scanner input = new Scanner(System.in); 
         System.out.print("Enter text : "); 
-      
         String text = input.next(); 
-        boolean isPalindrome = true;
-        for(int i = 0; i < text.length() / 2; i++) { 
-            
-            if(text.charAt(i) != text.charAt(text.length() - 1 - i)) { 
-                isPalindrome = false; 
-                break; 
-            }
-        } 
+        String reversed="";
+        for (int i = text.length() - 1; i >= 0; i--) 
+            reversed = reversed + text.charAt(i); 
         
-        if(isPalindrome) 
-            System.out.println("Is it a Palindrome? : true"); 
+
+        if (text.equals(reversed)) 
+            System.out.println("Is it Pallindrome? : true");
         else 
-            System.out.println("Is it a Palindrome? : false"); 
+            System.out.println("Is it Pallindrome? : true");
         
         input.close(); 
     } 

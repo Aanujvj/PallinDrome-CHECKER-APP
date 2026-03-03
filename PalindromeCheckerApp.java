@@ -3,29 +3,42 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.Stack; 
-public class PalindromeCheckerApp 
-{
-    public static boolean checkPalindrome(String text) {
-        int start = 0;
-        int end = text.length() - 1;
+import java.util.Stack;
+import java.util.Scanner;
+import java.util.Stack;
 
-        while (start < end) {
-            if (text.charAt(start) != text.charAt(end)) {
-                return false;
-            }
-            start++;
-            end--;
-        }
-        return true;
+public class PalindromeCheckerApp {
+
+    interface PalindromeStrategy {
+        boolean check(String input);
     }
-    public static void main(String[] args) 
-    { 
-        Scanner input = new Scanner(System.in); 
-        System.out.print("Enter text : "); 
-        String text= input.next();
-        System.out.println("Is Palindrome? : " + checkPalindrome(text));
-        input.close(); 
-    } 
-    
+
+    static class StackStrategy implements PalindromeStrategy {
+        @Override
+        public boolean check(String input) {
+            if (input == null || input.isEmpty())
+                return true;
+            Stack<Character> stack = new Stack<>();
+            for (int i = 0; i < input.length(); i++) {
+                stack.push(input.charAt(i));
+            }
+            StringBuilder reverseString = new StringBuilder();
+            while (!stack.isEmpty())
+                reverseString.append(stack.pop());
+            return input.equals(reverseString.toString());
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("text: ");
+        String userInput = scanner.nextLine();
+
+        PalindromeStrategy strategy = new StackStrategy();
+        boolean isPalindrome = strategy.check(userInput);
+
+        System.out.println("IS PALINDROME? : " + isPalindrome);
+        scanner.close();
+    }
 }
+
